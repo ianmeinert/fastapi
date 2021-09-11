@@ -1,5 +1,5 @@
 {
-  "name": "svelte-app",
+  "name": "ui",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -9,6 +9,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
     "rollup": "^2.3.4",
     "rollup-plugin-css-only": "^3.1.0",
@@ -19,6 +20,7 @@
   },
   "dependencies": {
     "sirv-cli": "^1.0.0",
+    "axios": "^0.21.4",
     "svelte-table": "^0.1.18"
   }
 }

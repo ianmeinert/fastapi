@@ -1,16 +1,11 @@
 <script>
     import SvelteTable from "svelte-table";
+    import { onMount } from 'svelte';
+    import { getTodoList } from "../services/api/todo"
+   
+    let data = [];
 
-    const data = [
-        { id: 1, name: 'Finish this website', days_until_alert: '1', date_added: '9/11/2021' },
-        { id: 2, name: 'Run the demo', days_until_alert: '6', date_added: '9/11/2021' }
-    ];
-
-    const headers = [{
-        key: "id",
-        title: "ID",
-        value: v => v.id
-    },
+    let headers = [
     {
         key: "name",
         title: "Task title",
@@ -26,6 +21,12 @@
         title: "Days until alert",
         value: v => v.days_until_alert
     }];
+
+
+    // Get the data from the api, after the page is mounted.
+    onMount(async () => {
+        data = await getTodoList();
+    });
 
 </script>
 

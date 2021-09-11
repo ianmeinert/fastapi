@@ -7,7 +7,7 @@ This project is built using FastAPI for the back end and Svelte for the frontend
 
 -Node
 --Svelte
---webpack
+---degit (https://svelte.dev/blog/the-easiest-way-to-get-started)
 
 implements Node.gitignore template from https://github.com/github/gitignore
 

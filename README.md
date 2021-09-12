@@ -1,4 +1,4 @@
-# Simple Application
+# A Simple Demo Application
 This is web application is developed using a Svelte client framework, deployed using Axios. It communicated with a Python API, built on FastAPI, deployed with Uvicorn.
 
 ## Backend Deployment

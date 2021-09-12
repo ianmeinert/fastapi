@@ -7,19 +7,14 @@
 
     let headers = [
     {
-        key: "name",
+        key: "title",
         title: "Task title",
-        value: v => v.name
+        value: v => v.title
     },
     {
-        key: "date_added",
-        title: "Date added",
-        value: v => v.date_added
-    },
-    {
-        key: "days_until_alert",
-        title: "Days until alert",
-        value: v => v.days_until_alert
+        key: "completed",
+        title: "Completed",
+        value: v => v.completed
     }];
 
 

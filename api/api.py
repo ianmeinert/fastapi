@@ -1,9 +1,8 @@
-import fastapi
 import uvicorn
 from typing import List, Dict, Optional
 from datetime import datetime
 from pydantic import BaseModel
-from fastapi import FastAPI, Path, Request
+from fastapi import FastAPI, Path, Request, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 import json
 
@@ -27,8 +26,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-__todos: List[Todo] = None
-
 async def load_todos() -> List[Todo]:    
     with open("datastore/data_file.json", "r") as read_file:
         data = json.load(read_file)
@@ -40,31 +37,48 @@ async def add_todo(todo) -> str:
         file_data.append(todo)
         write_file.seek(0)
         json.dump(file_data, write_file, indent = 4)
-        
+
+async def validate_id(str):
+    try:
+        int(str)
+    except ValueError:
+        detail = f"Non-integer value was provided"
+        raise HTTPException(status_code=status.HTTP_412_PRECONDITION_FAILED, detail=detail)
     
 @app.get('/',name='home')
 async def index():
     return {"message": "Welcome home"}
 
-@app.post('/todo', name='Create a todo')
+@app.post('/todo', name='Create a todo', status_code=status.HTTP_201_CREATED)
 async def todos_post(req: Request):
     __todos = await load_todos()
-    todo = await req.json()
-    response = await add_todo(todo)
+    reqTodo = await req.json()
+    id = reqTodo["id"]
+    await validate_id(id)
+        
+    result = [todo for todo in __todos if todo["id"] == id]    
+    if result:        
+        detail = f"Resource with id: {id} already exists"
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=detail)
+    
+    await add_todo(reqTodo)
     
     return {
         "status" : "SUCCESS",
-        "data" : todo
+        "data" : reqTodo
     }
 
-@app.get("/todo/{item_id}", status_code=200, name='Get a todo', response_model=Todo)
+@app.get("/todo/{item_id}", status_code=status.HTTP_200_OK, name='Get a todo', response_model=Todo)
 async def fetch_todo(item_id: int = Path(..., title="The ID of the item to get")):
     __todos = await load_todos()
+    
     result = [todo for todo in __todos if todo["id"] == item_id]
     if result:
         return result[0]
+    else:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Item not found")
 
-@app.get('/todos', name='Get all todos', response_model=List[Todo])
+@app.get('/todos', name='Get all todos', status_code=status.HTTP_200_OK,  response_model=List[Todo])
 async def todos_get() -> List[Todo]:
     __todos = await load_todos()
     return  __todos

@@ -1,14 +1,51 @@
-# fastapi
-This project is built using FastAPI for the back end and Svelte for the frontend.
+# Simple Application
+This is web application is developed using a Svelte client framework, deployed using Axios. It communicated with a Python API, built on FastAPI, deployed with Uvicorn.
 
--Python3
---FastAPI
---uvicorn
+## Backend Deployment
+Plans are in place to implement a datastore of some sort.  But for a working case, the data is currently stored in the python script itself.
 
--Node
---Svelte
----degit (https://svelte.dev/blog/the-easiest-way-to-get-started)
+### Requirements
+* [Python 3](https://www.python.org/)  
+    Install according to your OS. You may want to install py `pip install py`  
+* [FastAPI](https://fastapi.tiangolo.com/)  
+    ```
+    pip install fastapi
+    ```
+* [Uvicorn](https://www.uvicorn.org/)  
+    ```
+    pip install uvicorn[standard]
+    ```
 
-implements Node.gitignore template from https://github.com/github/gitignore
+Once the requirements are installed run `python ./main.py` from the commandline in the project's API directory to start the API service. Visit `http://127.0.0.1:8000/docs` to view the available endpoints and to test the API.
 
-Install instructions to follow...
+## Frontend Deployment
+If you are forking this project, you should be able to `npm install` within the `ui` directory without further configuration. 
+
+### Requirements
+* [Node](https://nodejs.org/)  
+    Install according to your OS
+* [Svelte](https://svelte.dev/)  
+    ```
+    npm install svelte
+    ```
+* [degit](https://www.npmjs.com/package/degit)  
+    ```
+    npx degit sveltejs/template my-svelte-project
+    npm install
+    ```
+* [Axios](https://axios-http.com)  
+    ```
+    npm install axios
+    ```    
+
+Once all the pacakages are installed, start the service using
+```
+npm run dev
+```
+
+### Additional notes
+## Rollup Config
+The default `rollup.config.js` presented issues using a vanilla install of Axios. `Line 7` and `Line 11` were added in the document to prevent the JSON errors.
+
+## .gitignore
+GitHub has a great resource for `.gitignore` templates.  If you plan on further expanding to other environments, it is recommended to look through them. This project implements the [Node.gitignore](https://github.com/github/gitignore) template.

@@ -16,10 +16,10 @@ Plans are in place to implement a datastore of some sort.  But for a working cas
     pip install uvicorn[standard]
     ```
 
-Once the requirements are installed run `python ./main.py` from the commandline in the project's API directory to start the API service. Visit `http://127.0.0.1:8000/docs` to view the available endpoints and to test the API.
+Once the requirements are installed run `python ./main.py` from the commandline in the project's API directory to start the API service. Visit `http://127.0.0.1:5000/docs` to view the available endpoints and to test the API.
 
 ## Frontend Deployment
-If you are forking this project, you should be able to `npm install` within the `ui` directory without further configuration. 
+Right now, the UI only demonstrates a simple `[GET]` call to the API, returning a list of recordsets. As development progresses, a full CRUD stack will be implemented.  If you are forking this project, you should be able to `npm install` within the `ui` directory without further configuration. 
 
 ### Requirements
 * [Node](https://nodejs.org/)  
@@ -38,10 +38,7 @@ If you are forking this project, you should be able to `npm install` within the 
     npm install axios
     ```    
 
-Once all the pacakages are installed, start the service using
-```
-npm run dev
-```
+Once all the pacakages are installed, start the service using `npm run dev`. The default deployment location is `http://127.0.0.1:5000`.  
 
 ### Additional notes
 ## Rollup Config

@@ -1,5 +1,5 @@
 # A Simple Demo Application
-This is web application is developed using a Svelte client framework, deployed using Axios. It communicated with a Python API, built on FastAPI, deployed with Uvicorn.
+This web application is developed using a Svelte client framework, deployed using Axios. The user interface communicates with a Python script using FastAPI and is deployed with Uvicorn.
 
 ## Backend Deployment
 Plans are in place to implement a relational database of some sort.  But for a working case, the data is currently stored a json formatted file.
@@ -16,7 +16,7 @@ Plans are in place to implement a relational database of some sort.  But for a w
     pip install uvicorn[standard]
     ```
 
-Once the requirements are installed run `python ./main.py` from the commandline in the project's API directory to start the API service. Visit `http://127.0.0.1:5000/docs` to view the available endpoints and to test the API. The `[POST]` method currently stores in memory.
+Once the requirements are installed run `python ./main.py` from the commandline in the project's API directory to start the API service. Visit `http://127.0.0.1:5000/docs` to view the available endpoints and to test the API.
 
 ## Frontend Deployment
 Right now, the UI only demonstrates a simple `[GET]` call to the API, returning a list of recordsets. As development progresses, a full CRUD stack will be implemented.  If you are forking this project, you should be able to `npm install` within the `ui` directory without further configuration. 

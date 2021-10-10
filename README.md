@@ -16,7 +16,7 @@ Plans are in place to implement a relational database of some sort.  But for a w
     pip install uvicorn[standard]
     ```
 
-Once the requirements are installed run `python ./main.py` from the commandline in the project's API directory to start the API service. Visit `http://127.0.0.1:5000/docs` to view the available endpoints and to test the API.
+Once the requirements are installed run `python ./api.py` from the commandline in the project's API directory to start the API service. Visit `http://127.0.0.1:8001/docs` to view the available endpoints and to test the API.
 
 ## Frontend Deployment
 Right now, the UI only demonstrates a simple `[GET]` call to the API, returning a list of recordsets. As development progresses, a full CRUD stack will be implemented.  If you are forking this project, you should be able to `npm install` within the `ui` directory without further configuration. 
